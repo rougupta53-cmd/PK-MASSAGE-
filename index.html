@@ -98,6 +98,7 @@
       transform: scale(1.03);
     }
 
+    /* Emoji badge positioned lower than before */
     .logo-badge {
       background: linear-gradient(150deg, #6d4aff, #a67cff);
       width: 96px;
@@ -108,8 +109,8 @@
       justify-content: center;
       font-size: 3.2rem;
       box-shadow: 0 20px 35px rgba(109, 74, 255, 0.55);
-      margin-top: -48px;
-      margin-bottom: 0.5rem;
+      margin-top: -48px;      /* negative margin pulls it up; adjusted to be lower? */
+      margin-bottom: 0.8rem;  /* increased bottom margin */
       position: relative;
       z-index: 5;
       border: 5px solid white;
@@ -272,6 +273,41 @@
       font-size: 1.2rem;
     }
 
+    /* 📘 INFO ICON – redesigned for better visibility and distinct look */
+    .info-icon {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #3e2a6d;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      transition: 0.2s;
+      cursor: pointer;
+      z-index: 8;
+      border: 2px solid #b39ddb;
+      font-weight: 600;
+      user-select: none;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 2px rgba(0,0,0,0.1);
+    }
+    .info-icon:hover {
+      background: #ffffff;
+      transform: scale(1.2) rotate(5deg);
+      color: #0f8b4c;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border-color: #0f8b4c;
+    }
+    .info-icon:active {
+      transform: scale(0.95);
+    }
+
     .total-cost-panel {
       background: linear-gradient(105deg, #ede6ff, #fff5fb);
       border: 2px solid #a88beb;
@@ -426,7 +462,6 @@
       padding-top: 1.5rem;
     }
 
-    /* extras */
     .flash-sale {
       background: #fff0f8;
       border-radius: 30px;
@@ -439,67 +474,114 @@
       letter-spacing: 0.4px;
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 0.3rem;
-      }
-      .glass-panel {
-        border-radius: 24px;
-      }
-      .content-wrapper {
-        padding: 0 1.2rem 1.8rem 1.2rem;
-      }
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
-      }
-      .full-width {
-        grid-column: span 1;
-      }
-      .brand-name {
-        font-size: 2.4rem;
-      }
-      .total-cost-panel {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-      .service-image {
-        height: 90px;
-      }
-      .banner-image {
-        min-height: 300px;
-        max-height: 420px;
-      }
-      .logo-badge {
-        width: 80px;
-        height: 80px;
-        font-size: 2.6rem;
-        margin-top: -40px;
-      }
-      .type-option {
-        flex: 1 1 100%;
-      }
+    /* 🌟 MODAL – fully visible */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.2s ease;
+      padding: 20px;
+      overflow-y: auto;
     }
+    .modal-card {
+      background: white;
+      max-width: 520px;
+      width: 100%;
+      border-radius: 36px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 40px 60px rgba(0,0,0,0.5);
+      text-align: left;
+      animation: popIn 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      margin: auto;
+    }
+    .modal-close {
+      position: sticky;
+      top: 0;
+      right: 0;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: #f3edff;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #4b2a7c;
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1;
+      border: none;
+      transition: 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 5;
+      margin-bottom: 0.5rem;
+    }
+    .modal-close:hover {
+      background: #e0d4ff;
+      color: #c0392b;
+      transform: rotate(90deg);
+    }
+    .modal-img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 22px;
+      margin-bottom: 1rem;
+      border: 1px solid #eee;
+    }
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1e1a2b;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+    .modal-detail {
+      font-size: 1rem;
+      color: #3a2d52;
+      line-height: 1.6;
+      margin: 0.7rem 0;
+      word-break: break-word;
+    }
+    .modal-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #4b2a7c;
+      margin-top: 0.5rem;
+    }
+    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
+    @keyframes popIn { from {transform:scale(0.7); opacity:0} to {transform:scale(1); opacity:1} }
 
+    @media (max-width: 768px) {
+      body { padding: 0.3rem; }
+      .glass-panel { border-radius: 24px; }
+      .content-wrapper { padding: 0 1.2rem 1.8rem 1.2rem; }
+      .form-grid { grid-template-columns: 1fr; gap: 0.4rem; }
+      .full-width { grid-column: span 1; }
+      .brand-name { font-size: 2.4rem; }
+      .total-cost-panel { flex-direction: column; align-items: flex-start; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .service-image { height: 90px; }
+      .banner-image { min-height: 300px; max-height: 420px; }
+      .logo-badge { width: 80px; height: 80px; font-size: 2.6rem; margin-top: -40px; margin-bottom: 1rem; }
+      .type-option { flex: 1 1 100%; }
+      .info-icon { width: 30px; height: 30px; font-size: 1rem; }
+      .modal-card { max-width: 95%; padding: 1.5rem; }
+    }
     @media (max-width: 480px) {
-      .banner-image {
-        min-height: 250px;
-        max-height: 340px;
-      }
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-      }
-      .service-image {
-        height: 75px;
-      }
-      .service-price {
-        font-size: 1rem;
-      }
+      .banner-image { min-height: 250px; max-height: 340px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .service-image { height: 75px; }
+      .service-price { font-size: 1rem; }
     }
   </style>
 </head>
@@ -523,76 +605,98 @@
         <span class="badge">🎁 Free consultation</span>
       </div>
       
-      <!-- extra feature: limited offer -->
       <div class="flash-sale">🔥 Limited offer: Book today & get 10% off on combo services</div>
 
       <form id="bookingForm">
         <div class="section-title">🧖 Choose Service <span>12 options</span></div>
         <div class="services-grid" id="servicesGrid">
-          <div class="service-card" data-price="499" data-service-name="Back Pain Massage (30 min)" onclick="selectService(this)">
+          <!-- BACK PAIN -->
+          <div class="service-card" data-price="499" data-service-name="Back Pain Massage (30 min)" data-desc="Targets deep muscle knots and lower back stiffness. Relief from chronic pain, improves blood flow and posture." data-benefits="Reduces sciatic discomfort, releases tension in lumbar region, increases mobility." data-img="https://i.postimg.cc/05fhJXkF/4F2A2F49-E679-4994-88DD-797B5B12EAE8.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Back Pain Massage - 30 min - ₹499">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.postimg.cc/05fhJXkF/4F2A2F49-E679-4994-88DD-797B5B12EAE8.png" alt="Back Pain Massage" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Back Pain</div><div class="service-duration">30 min</div><div class="service-price">₹499</div></div>
           </div>
-          <div class="service-card" data-price="799" data-service-name="Swedish Full Body (60 min)" onclick="selectService(this)">
+          <!-- SWEDISH -->
+          <div class="service-card" data-price="799" data-service-name="Swedish Full Body (60 min)" data-desc="Classic relaxation massage using long strokes, kneading and circular movements. Relieves stress, enhances circulation." data-benefits="Full body relaxation, lowers cortisol, improves sleep quality." data-img="https://i.ibb.co/vCZg5Y31/4-BE81865-2-D91-4273-AF03-CC8659511-AB8.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Swedish Full Body Massage - 60 min - ₹799">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/vCZg5Y31/4-BE81865-2-D91-4273-AF03-CC8659511-AB8.png" alt="Swedish Full Body" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Swedish</div><div class="service-duration">60 min</div><div class="service-price">₹799</div></div>
           </div>
-          <div class="service-card" data-price="999" data-service-name="Aloe Vera Massage (45 min)" onclick="selectService(this)">
+          <!-- ALOE VERA -->
+          <div class="service-card" data-price="999" data-service-name="Aloe Vera Massage (45 min)" data-desc="Nourishing massage with fresh aloe vera gel. Hydrates skin, reduces inflammation." data-benefits="Skin hydration, cooling effect, reduces redness and irritation." data-img="https://i.ibb.co/LdbDMDZj/336-E8-C61-AC37-4650-8-C02-62-A1-C4268529.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Aloe Vera Massage - 45 min - ₹999">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/LdbDMDZj/336-E8-C61-AC37-4650-8-C02-62-A1-C4268529.png" alt="Aloe Vera Massage" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Aloe Vera</div><div class="service-duration">45 min</div><div class="service-price">₹999</div></div>
           </div>
-          <div class="service-card" data-price="1199" data-service-name="Deep Tissue (60+ min)" onclick="selectService(this)">
+          <!-- DEEP TISSUE -->
+          <div class="service-card" data-price="1199" data-service-name="Deep Tissue (60+ min)" data-desc="Firm pressure focusing on deep layers of muscle and connective tissue. Perfect for chronic aches." data-benefits="Breaks down scar tissue, relieves severe tension, improves range of motion." data-img="https://i.ibb.co/HfjCJ5P4/86049-DC3-1876-4636-ACD7-8-BB2-D9-A41683.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Deep Tissue Massage - 60 min+ - ₹1199">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/HfjCJ5P4/86049-DC3-1876-4636-ACD7-8-BB2-D9-A41683.png" alt="Deep Tissue Massage" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Deep Tissue</div><div class="service-duration">60+ min</div><div class="service-price">₹1199</div></div>
           </div>
-          <div class="service-card" data-price="1499" data-service-name="Stone Massage (60 min)" onclick="selectService(this)">
+          <!-- STONE -->
+          <div class="service-card" data-price="1499" data-service-name="Stone Massage (60 min)" data-desc="Smooth, heated basalt stones placed on key points. Melts away tension and improves energy flow." data-benefits="Deep relaxation, reduces muscle stiffness, calms nervous system." data-img="https://i.ibb.co/9HKTxzRx/06-D43969-585-E-4-B58-9713-3-A0113424239.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Stone Massage - 60 min - ₹1499">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/9HKTxzRx/06-D43969-585-E-4-B58-9713-3-A0113424239.png" alt="Stone Massage" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Stone</div><div class="service-duration">60 min</div><div class="service-price">₹1499</div></div>
           </div>
-          <div class="service-card" data-price="999" data-service-name="Dry Cupping (60+ min)" onclick="selectService(this)">
+          <!-- DRY CUPPING -->
+          <div class="service-card" data-price="999" data-service-name="Dry Cupping (60+ min)" data-desc="Suction cups placed on back to increase blood flow, loosen fascia, and promote healing." data-benefits="Detoxification, pain relief, improves circulation, reduces cellulite." data-img="https://i.ibb.co/Pv7PcB1r/IMG-9517.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Dry Cupping Massage - 60 min+ - ₹999">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/Pv7PcB1r/IMG-9517.png" alt="Dry Cupping" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Dry Cupping</div><div class="service-duration">60+ min</div><div class="service-price">₹999</div></div>
           </div>
-          <div class="service-card" data-price="99" data-service-name="Wet Cupping per cup" onclick="selectService(this)">
+          <!-- WET CUPPING -->
+          <div class="service-card" data-price="99" data-service-name="Wet Cupping per cup" data-desc="Traditional hijama therapy: small incisions with suction to draw out toxins. Per cup pricing." data-benefits="Removes stagnant blood, boosts immunity, relieves local pain." data-img="https://i.ibb.co/V0BkzNQP/92-FDAD7-C-7-E24-4-F87-899-C-ED7-ECF168-FDA.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Wet Cupping Therapy - Per cup - ₹99">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/V0BkzNQP/92-FDAD7-C-7-E24-4-F87-899-C-ED7-ECF168-FDA.png" alt="Wet Cupping" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Wet Cupping</div><div class="service-duration">Per cup</div><div class="service-price">₹99</div></div>
           </div>
-          <div class="service-card" data-price="499" data-service-name="Face D-Tan (20 min)" onclick="selectService(this)">
+          <!-- FACE D-TAN -->
+          <div class="service-card" data-price="499" data-service-name="Face D-Tan (20 min)" data-desc="Instant de-tan face pack with natural ingredients. Removes sun tan, brightens skin." data-benefits="Glowing skin, reduces pigmentation, refreshment." data-img="https://i.ibb.co/gMQ3pxHb/BFAD54-D0-FCFC-479-E-9-DA3-FFBF3-F166-B2-B.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Face D-Tan - 20 min - ₹499">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/gMQ3pxHb/BFAD54-D0-FCFC-479-E-9-DA3-FFBF3-F166-B2-B.png" alt="Face D-Tan" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Face D-Tan</div><div class="service-duration">20 min</div><div class="service-price">₹499</div></div>
           </div>
-          <div class="service-card" data-price="1799" data-service-name="Body D-Tan (90 min)" onclick="selectService(this)">
+          <!-- BODY D-TAN -->
+          <div class="service-card" data-price="1799" data-service-name="Body D-Tan (90 min)" data-desc="Full body de-tan treatment with exfoliation and natural mask. Removes dead cells and tan." data-benefits="Smooth skin, even tone, deep cleansing." data-img="https://i.ibb.co/60XRTzs7/5-A911-DA9-AC5-A-44-F6-BDF7-0-A5850-C532-B3.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Body D-Tan - 90 min - ₹1799">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/60XRTzs7/5-A911-DA9-AC5-A-44-F6-BDF7-0-A5850-C532-B3.png" alt="Body D-Tan" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Body D-Tan</div><div class="service-duration">90 min</div><div class="service-price">₹1799</div></div>
           </div>
-          <div class="service-card" data-price="2499" data-service-name="Body D-Tan Massage (120m)" onclick="selectService(this)">
+          <!-- BODY D-TAN MASSAGE -->
+          <div class="service-card" data-price="2499" data-service-name="Body D-Tan Massage (120m)" data-desc="Ultimate pampering: full body de-tan followed by relaxing massage. Complete rejuvenation." data-benefits="Soft skin + relaxed muscles, best of both worlds." data-img="https://i.ibb.co/60XRTzs7/5-A911-DA9-AC5-A-44-F6-BDF7-0-A5850-C532-B3.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Body D-Tan Massage - 120 min - ₹2499">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.ibb.co/60XRTzs7/5-A911-DA9-AC5-A-44-F6-BDF7-0-A5850-C532-B3.png" alt="Body D-Tan Massage 120 Min" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">D-Tan + Massage</div><div class="service-duration">120 min</div><div class="service-price">₹2499</div></div>
           </div>
-          <div class="service-card" data-price="599" data-service-name="Hair Trimming (30 min)" onclick="selectService(this)">
+          <!-- HAIR TRIMMING -->
+          <div class="service-card" data-price="599" data-service-name="Hair Trimming (30 min)" data-desc="Professional body hair trimming for men. Neat, hygienic and precise." data-benefits="Clean look, no itching, safe and quick." data-img="https://i.postimg.cc/x8hCRfvB/66FAD6E7-360C-4EDB-B103-CE2BD641A5C0.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Body Hair Trimming - 30 min - ₹599">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.postimg.cc/x8hCRfvB/66FAD6E7-360C-4EDB-B103-CE2BD641A5C0.png" alt="Body Hair Trim" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Hair Trim</div><div class="service-duration">30 min</div><div class="service-price">₹599</div></div>
           </div>
-          <div class="service-card" data-price="1999" data-service-name="Four Hand Massage (45 min)" onclick="selectService(this)">
+          <!-- FOUR HAND -->
+          <div class="service-card" data-price="1999" data-service-name="Four Hand Massage (45 min)" data-desc="Two therapists working in synchronized harmony. Double the relaxation, half the time." data-benefits="Ultimate luxury, synchronized movements, total stress meltdown." data-img="https://i.postimg.cc/0NPNZHSC/7F8C9682-BD15-4E68-8714-B9E5F2D6155D.png" onclick="selectService(this)">
             <input type="radio" name="service" value="Four Hand Massage - 45 min - ₹1999">
+            <span class="info-icon" onclick="event.stopPropagation(); showServiceDetails(this.parentNode);" title="More info">ℹ️</span>
             <img src="https://i.postimg.cc/0NPNZHSC/7F8C9682-BD15-4E68-8714-B9E5F2D6155D.png" alt="Four Hand Massage" class="service-image" loading="lazy">
             <div class="service-info"><div class="service-name">Four Hand</div><div class="service-duration">45 min</div><div class="service-price">₹1999</div></div>
           </div>
         </div>
         <div class="error-msg" id="serviceError">⚠️ Please select a service</div>
 
-        <!-- SERVICE TYPE SECTION MOVED UP - above total cost panel -->
         <div class="section-title" style="margin-top: 1.5rem;">🏠 Choose Service Type</div>
         <div class="service-type-group" style="margin-bottom: 0.5rem;">
           <div class="type-option selected" data-type="Home Service" onclick="selectServiceType(this)">
@@ -630,11 +734,39 @@
     </div>
   </div>
 
+  <!-- SERVICE MODAL -->
+  <div id="serviceModal" class="modal-overlay" style="display:none;" onclick="closeModal()">
+    <div class="modal-card" onclick="event.stopPropagation();">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img id="modalImage" src="" alt="Service image" class="modal-img">
+      <div class="modal-title" id="modalTitle">Service</div>
+      <div class="modal-detail" id="modalDesc">Description</div>
+      <div class="modal-detail"><strong>✨ Benefits:</strong> <span id="modalBenefits"></span></div>
+      <div class="modal-price" id="modalPrice">₹0</div>
+    </div>
+  </div>
+
   <script>
     let selectedServiceName = '';
     let selectedServicePrice = 0;
     let serviceType = 'Home Service';
     const HOME_CHARGE = 199;
+
+    // service info map for modal
+    const serviceInfoMap = {
+      'Back Pain Massage (30 min)': { title: 'Back Pain Massage', desc: 'Targets deep muscle knots and lower back stiffness. Relief from chronic pain, improves blood flow and posture. Ideal for desk job professionals.', benefits: 'Reduces sciatic discomfort, releases tension in lumbar region, increases mobility.', img: 'https://i.postimg.cc/05fhJXkF/4F2A2F49-E679-4994-88DD-797B5B12EAE8.png' },
+      'Swedish Full Body (60 min)': { title: 'Swedish Full Body Massage', desc: 'Classic relaxation massage using long strokes, kneading and circular movements. Relieves stress, enhances circulation and overall wellbeing.', benefits: 'Full body relaxation, lowers cortisol, improves sleep quality.', img: 'https://i.ibb.co/vCZg5Y31/4-BE81865-2-D91-4273-AF03-CC8659511-AB8.png' },
+      'Aloe Vera Massage (45 min)': { title: 'Aloe Vera Massage', desc: 'Nourishing massage with fresh aloe vera gel. Hydrates skin, reduces inflammation, and leaves you feeling refreshed.', benefits: 'Skin hydration, cooling effect, reduces redness and irritation.', img: 'https://i.ibb.co/LdbDMDZj/336-E8-C61-AC37-4650-8-C02-62-A1-C4268529.png' },
+      'Deep Tissue (60+ min)': { title: 'Deep Tissue Massage', desc: 'Firm pressure focusing on deep layers of muscle and connective tissue. Perfect for chronic aches and contracted areas.', benefits: 'Breaks down scar tissue, relieves severe tension, improves range of motion.', img: 'https://i.ibb.co/HfjCJ5P4/86049-DC3-1876-4636-ACD7-8-BB2-D9-A41683.png' },
+      'Stone Massage (60 min)': { title: 'Hot Stone Massage', desc: 'Smooth, heated basalt stones placed on key points. Melts away tension and improves energy flow.', benefits: 'Deep relaxation, reduces muscle stiffness, calms nervous system.', img: 'https://i.ibb.co/9HKTxzRx/06-D43969-585-E-4-B58-9713-3-A0113424239.png' },
+      'Dry Cupping (60+ min)': { title: 'Dry Cupping Therapy', desc: 'Suction cups placed on back to increase blood flow, loosen fascia, and promote healing.', benefits: 'Detoxification, pain relief, improves circulation, reduces cellulite.', img: 'https://i.ibb.co/Pv7PcB1r/IMG-9517.png' },
+      'Wet Cupping per cup': { title: 'Wet Cupping (Hijama)', desc: 'Traditional hijama therapy: small incisions with suction to draw out toxins. Per cup pricing.', benefits: 'Removes stagnant blood, boosts immunity, relieves local pain.', img: 'https://i.ibb.co/V0BkzNQP/92-FDAD7-C-7-E24-4-F87-899-C-ED7-ECF168-FDA.png' },
+      'Face D-Tan (20 min)': { title: 'Face De-Tan', desc: 'Instant de-tan face pack with natural ingredients. Removes sun tan, brightens and evens skin tone.', benefits: 'Glowing skin, reduces pigmentation, refreshment.', img: 'https://i.ibb.co/gMQ3pxHb/BFAD54-D0-FCFC-479-E-9-DA3-FFBF3-F166-B2-B.png' },
+      'Body D-Tan (90 min)': { title: 'Body De-Tan', desc: 'Full body de-tan treatment with exfoliation and natural mask. Removes dead cells and tan.', benefits: 'Smooth skin, even tone, deep cleansing.', img: 'https://i.ibb.co/60XRTzs7/5-A911-DA9-AC5-A-44-F6-BDF7-0-A5850-C532-B3.png' },
+      'Body D-Tan Massage (120m)': { title: 'Body D-Tan + Massage', desc: 'Ultimate pampering: full body de-tan followed by relaxing massage. Complete rejuvenation.', benefits: 'Soft skin + relaxed muscles, best of both worlds.', img: 'https://i.ibb.co/60XRTzs7/5-A911-DA9-AC5-A-44-F6-BDF7-0-A5850-C532-B3.png' },
+      'Hair Trimming (30 min)': { title: 'Body Hair Trimming', desc: 'Professional body hair trimming for men. Neat, hygienic and precise.', benefits: 'Clean look, no itching, safe and quick.', img: 'https://i.postimg.cc/x8hCRfvB/66FAD6E7-360C-4EDB-B103-CE2BD641A5C0.png' },
+      'Four Hand Massage (45 min)': { title: 'Four Hand Massage', desc: 'Two therapists working in synchronized harmony. Double the relaxation, half the time.', benefits: 'Ultimate luxury, synchronized movements, total stress meltdown.', img: 'https://i.postimg.cc/0NPNZHSC/7F8C9682-BD15-4E68-8714-B9E5F2D6155D.png' }
+    };
 
     function selectService(element) {
       document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
@@ -669,6 +801,24 @@
       } else {
         panel.style.display = 'none';
       }
+    }
+
+    function showServiceDetails(cardElement) {
+      const serviceName = cardElement.dataset.serviceName;
+      const info = serviceInfoMap[serviceName];
+      if (!info) return;
+      
+      const price = cardElement.dataset.price;
+      document.getElementById('modalImage').src = info.img;
+      document.getElementById('modalTitle').innerText = info.title;
+      document.getElementById('modalDesc').innerText = info.desc;
+      document.getElementById('modalBenefits').innerText = info.benefits;
+      document.getElementById('modalPrice').innerText = '₹' + price;
+      document.getElementById('serviceModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('serviceModal').style.display = 'none';
     }
 
     function validateForm() {
@@ -728,6 +878,10 @@
       now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
       document.getElementById('bookingDateTime').min = now.toISOString().slice(0,16);
       updateTotalPanel();
+      // close modal on ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
     });
   </script>
 </body>
